@@ -1,16 +1,28 @@
-package sr.unasat.fitnesapp;
+package com.example.notanotherworkoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.notanotherworkoutapp.R;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.ValueRange;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick (View v){
         Intent a = new Intent(MainActivity.this, WorkoutAct.class);
         a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(a);
+            startActivity(a);
     }
     });
+
     }
 
 
