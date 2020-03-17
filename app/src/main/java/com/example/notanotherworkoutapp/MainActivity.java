@@ -94,47 +94,6 @@ public class MainActivity extends AppCompatActivity {
     });
 
     }
-//    private void getQuote(){
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        final String QOD = "https://api.quotable.io/random";
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, QOD,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        List<QuoteDto> quoteDto = mapJsonToQuoteObject(response);
-//                        System.out.println(quoteDto);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                quotetext.setText("something went wrong");
-//            }
-//        });
-//        // Add the request to the RequestQueue.
-//        queue.add(stringRequest);
-//    }
-//
-//    private List<QuoteDto> mapJsonToQuoteObject(String jsonArray) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        List<QuoteDto> quoteList = new ArrayList<>();
-//        List<Map<String, ?>> quoteArray = null;
-//        QuoteDto quote = null;
-//
-//
-//        try {
-//            quoteArray = mapper.readValue(jsonArray, List.class);
-//            for (Map<String, ?> map : quoteArray) {
-//                quote = new QuoteDto((String) map.get("content"), (String) map.get("author"));
-//                quoteList.add(quote);
-//                quotetext.setText(quote.toString());
-//
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.out.println("Er is wat fout gegaan bij het parsen van de json data");
-//        }
-//        return quoteList;
-//    }
 
 
 }
