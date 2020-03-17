@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.notanotherworkoutapp.database.DataBaseHelper;
+
 public class WorkoutAct extends AppCompatActivity {
+    DataBaseHelper myDb;
 
     TextView titlepage, subtitlepage, intropage, subintropage,
             btnexercise, fitonetitle, fitonedesc, fittwotitle, fittwodesc,
@@ -28,6 +31,9 @@ public class WorkoutAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        myDb = new DataBaseHelper(this);
+
+        myDb.getAllWorkouts();
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);

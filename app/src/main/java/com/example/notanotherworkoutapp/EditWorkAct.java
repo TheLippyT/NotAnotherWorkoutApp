@@ -12,7 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.notanotherworkoutapp.database.DataBaseHelper;
+
 public class EditWorkAct extends AppCompatActivity {
+
+    DataBaseHelper myDb;
 
     TextView titlepage, subtitlepage, fitonetitle, fitonedesc,
             workvalue, fittwotitle, fittwodesc, btnexercise;
@@ -31,6 +35,7 @@ public class EditWorkAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_work);
+        myDb = new DataBaseHelper(this);
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);
@@ -60,8 +65,9 @@ public class EditWorkAct extends AppCompatActivity {
 
         btnexercise = findViewById(R.id.btnexercise);
 
-
-
+       // myDb.addWorkout();
+       // myDb.addExercise();
+        //myDb.addExerciseToWorkout();
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

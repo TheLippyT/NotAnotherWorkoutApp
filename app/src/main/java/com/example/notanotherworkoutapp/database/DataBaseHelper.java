@@ -2,10 +2,16 @@ package com.example.notanotherworkoutapp.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.example.notanotherworkoutapp.entity.WorkoutModel;
+
+import java.util.ArrayList;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -81,6 +87,52 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         valuesAccessories.put(COL_E5, accessories);
         db.insert(TABLE_EXERCISE, null, valuesAccessories);
     }
+
+
+
+    public ArrayList<WorkoutModel> getAllWorkouts() {
+        ArrayList<WorkoutModel> userModelArrayList = new ArrayList<WorkoutModel>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_WORKOUTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                WorkoutModel workoutModel = new WorkoutModel();
+                workoutModel.setWorkoutsId(c.getInt(c.getColumnIndex(COL_W1)));
+                workoutModel.setWorkoutName(c.getString(c.getColumnIndex(COL_W2)));
+
+                //getting user hobby where id = id from user_hobby table
+                String selectExerciseQuery = "SELECT  * FROM " + TABLE_EXERCISE +" WHERE "+COL_WE1+" = "+ workoutModel.getWorkoutsId();
+                Log.d("oppp",selectExerciseQuery);
+                //SQLiteDatabase dbhobby = this.getReadableDatabase();
+                Cursor cExercise = db.rawQuery(selectExerciseQuery, null);
+
+                if (cExercise.moveToFirst()) {
+                    do {
+                        workoutModel.setExerciseName(cExercise.getString(cExercise.getColumnIndex(COL_E2)));
+                    } while (cExercise.moveToNext());
+                }
+
+                //getting workout exercise where id = id from workout_exercise table
+                String selectWorkoutQuery = "SELECT  * FROM " + TABLE_WORKOUTS_EXERCISE+" WHERE "+COL_WE1+" = "+ workoutModel.getWorkout_exerciseId();;
+                //SQLiteDatabase dbCity = this.getReadableDatabase();
+                Cursor cWorkoutExericse = db.rawQuery(selectWorkoutQuery, null);
+
+                if (cWorkoutExericse.moveToFirst()) {
+                    do {
+                        workoutModel.setWorkoutName(cWorkoutExericse.getString(cWorkoutExericse.getColumnIndex(COL_WE1)));
+                    } while (cWorkoutExericse.moveToNext());
+                }
+
+                // adding to Students list
+                userModelArrayList.add(workoutModel);
+            } while (c.moveToNext());
+        }
+        return userModelArrayList;
+    }
+
 
     public void updateExercise(int id, String name,  String type, String description, String accessories ) {
         SQLiteDatabase db = this.getWritableDatabase();
