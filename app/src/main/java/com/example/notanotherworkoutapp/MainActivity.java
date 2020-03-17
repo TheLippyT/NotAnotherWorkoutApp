@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         btnexercise = (TextView) findViewById(R.id.btnexercise);
         imgpage = (ImageView) findViewById(R.id.imgpage);
         bgprogress = (View) findViewById(R.id.bgprogress);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     {
         @Override
         public void onClick (View v){
-        Intent a = new Intent(MainActivity.this, EditWorkAct.class);
+        Intent a = new Intent(MainActivity.this, WorkoutAct.class);
         a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(a);
 
