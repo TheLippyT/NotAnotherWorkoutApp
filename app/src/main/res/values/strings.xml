@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NotAnotherWorkoutApp</string>
+    <string name="introduction">Introduction</string>
 </resources>
