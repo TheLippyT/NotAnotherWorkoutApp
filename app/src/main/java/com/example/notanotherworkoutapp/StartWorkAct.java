@@ -23,7 +23,7 @@ public class StartWorkAct extends AppCompatActivity {
 
     TextView intropage, subintropage, fitonetitle, fitonedesc, timerValue, btnexercise;
     View divpage, bgprogress;
-    ImageView imgtimer;
+//    ImageView imgtimer;
     LinearLayout fitone;
 
     private static final long START_TIME_IN_MILLIS = 800000;
@@ -59,7 +59,7 @@ public class StartWorkAct extends AppCompatActivity {
         divpage = (View) findViewById(R.id.divpage);
         bgprogress = (View) findViewById(R.id.bgprogress);
         fitone = (LinearLayout) findViewById(R.id.fitone);
-        imgtimer = (ImageView) findViewById(R.id.imgtimer);
+//        imgtimer = (ImageView) findViewById(R.id.imgtimer);
 
 
         // assign animation
@@ -70,7 +70,7 @@ public class StartWorkAct extends AppCompatActivity {
         subintropage.startAnimation(ttbtwo);
         divpage.startAnimation(ttbtwo);
         timerValue.startAnimation(alphagogo);
-        imgtimer.startAnimation(alphagogo);
+//        imgtimer.startAnimation(alphagogo);
 
         startTimer();
 
