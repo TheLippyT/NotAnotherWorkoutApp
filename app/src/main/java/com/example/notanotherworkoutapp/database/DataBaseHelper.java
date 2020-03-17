@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    public  static  final String DATABASE_NAME = "fitness";
+    public  static  final String DATABASE_NAME = "fitapp";
     private static final int DATABASE_VERSION = 1;
     public  static  final String TABLE_WORKOUTS = "workouts";
     public  static  final String TABLE_WORKOUTS_EXERCISE = "workouts_exercise";
