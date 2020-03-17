@@ -1,4 +1,4 @@
-package sr.unasat.fitnesapp;
+package com.example.notanotherworkoutapp;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
