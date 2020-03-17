@@ -1,4 +1,4 @@
-package sr.unasat.fitnesapp;
+package com.example.notanotherworkoutapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.notanotherworkoutapp.R;
 
 import java.util.Locale;
 
