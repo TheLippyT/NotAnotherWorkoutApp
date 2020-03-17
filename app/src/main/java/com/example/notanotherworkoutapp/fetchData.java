@@ -15,11 +15,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class fetchData extends AsyncTask<Void,Void,Void> {
+    //class to fetch data from the RestAPI
     String quotetext = "";
     String quoteParsed = "";
     @Override
     protected Void doInBackground(Void... voids) {
         try {
+            //make a connection to the Rest server
             URL url = new URL("https://api.myjson.com/bins/181loy");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -29,7 +31,7 @@ public class fetchData extends AsyncTask<Void,Void,Void> {
                 line =  bufferedReader.readLine();
                 quotetext = quotetext + line;
             }
-
+            //parse the jsonobject
             JSONArray jsonArray = new JSONArray(quotetext);
             for (int i =0 ;i<jsonArray.length();i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
@@ -49,7 +51,7 @@ public class fetchData extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-
+        //display the parsed data in the TextView
         MainActivity.quotetext.setText(this.quoteParsed);
 
     }

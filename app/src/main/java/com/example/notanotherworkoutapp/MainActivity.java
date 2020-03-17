@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         
         titlepage = (TextView) findViewById(R.id.titlepage);
         quotetext = (TextView) findViewById(R.id.subtitlepage);
-        inspire = (Button) findViewById(R.id.inspire);//inspire button
-
+        //inspire button
+        inspire = (Button) findViewById(R.id.inspire);
+        //display Rest data into the TextView
         inspire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
