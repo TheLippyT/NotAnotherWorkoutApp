@@ -1,35 +1,40 @@
 package com.example.notanotherworkoutapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import com.example.notanotherworkoutapp.R;
-
-import java.util.Locale;
+import static android.Manifest.permission.FOREGROUND_SERVICE;
 
 public class StartWorkAct extends AppCompatActivity {
 
 
-    TextView intropage, subintropage, fitonetitle, fitonedesc, timerValue, btnexercise;
+    TextView intropage, subintropage, fitonetitle, fitonedesc, btnexercise;
     View divpage, bgprogress;
 //    ImageView imgtimer;
     LinearLayout fitone;
+    private TextView showTime;
+    private EditText enterTime;
+    private Button start;
 
-    private static final long START_TIME_IN_MILLIS = 800000;
-    private CountDownTimer countDownTimer;
-    private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+//    private static final long START_TIME_IN_MILLIS = 800000;
+//    private CountDownTimer countDownTimer;
+//    private boolean mTimerRunning;
+//    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     Animation btthree, bttfour, ttbone, ttbtwo, alphagogo;
 
@@ -38,6 +43,21 @@ public class StartWorkAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_work);
+        // permission for foreground service
+        ActivityCompat.requestPermissions(this, new String[]{FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
+        showTime = (TextView) findViewById(R.id.showTime);
+        enterTime = (EditText) findViewById(R.id.enterTime);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("Counter");
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Integer integerTime = intent.getIntExtra("TimeRemaining", 0);
+                showTime.setText(integerTime.toString());
+            }
+        };
+        registerReceiver(broadcastReceiver, intentFilter);
+
 
         // load animations
         btthree = AnimationUtils.loadAnimation(this, R.anim.btthree);
@@ -53,7 +73,7 @@ public class StartWorkAct extends AppCompatActivity {
         btnexercise = (TextView) findViewById(R.id.btnexercise);
         fitonetitle = (TextView) findViewById(R.id.fitonetitle);
         fitonedesc = (TextView) findViewById(R.id.fitonedesc);
-        timerValue = (TextView) findViewById(R.id.timerValue);
+//        timerValue = (TextView) findViewById(R.id.timerValue);
         btnexercise = (TextView) findViewById(R.id.btnexercise);
 
         divpage = (View) findViewById(R.id.divpage);
@@ -69,10 +89,10 @@ public class StartWorkAct extends AppCompatActivity {
         intropage.startAnimation(ttbtwo);
         subintropage.startAnimation(ttbtwo);
         divpage.startAnimation(ttbtwo);
-        timerValue.startAnimation(alphagogo);
+//        timerValue.startAnimation(alphagogo);
 //        imgtimer.startAnimation(alphagogo);
 
-        startTimer();
+//        startTimer();
 
         // give an event to another page
         btnexercise.setOnClickListener(new View.OnClickListener() {
@@ -84,30 +104,39 @@ public class StartWorkAct extends AppCompatActivity {
             }
         });
 
+
+    }
+    public void startButton(View view){
+        Intent intentService = new Intent(this, TimerService.class);
+        Integer integerTimeSet = Integer.parseInt(enterTime.getText().toString());
+        intentService.putExtra("TimeValue", integerTimeSet);
+        startService(intentService);
     }
 
-    private void startTimer(){
-        countDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDowntText();
-            }
 
-            @Override
-            public void onFinish() {
-                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
-            }
-        }.start();
-        mTimerRunning = true;
-    }
 
-    private void updateCountDowntText(){
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-        String timeLeft = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-        timerValue.setText(timeLeft);
-    }
+//    private void startTimer(){
+//        countDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                mTimeLeftInMillis = millisUntilFinished;
+//                updateCountDowntText();
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
+//            }
+//        }.start();
+//        mTimerRunning = true;
+//    }
+//
+//    private void updateCountDowntText(){
+//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+//        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+//
+//        String timeLeft = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+//        timerValue.setText(timeLeft);
+//    }
 
 }
