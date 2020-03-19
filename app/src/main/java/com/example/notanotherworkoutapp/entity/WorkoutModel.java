@@ -3,23 +3,23 @@ package com.example.notanotherworkoutapp.entity;
 import java.io.Serializable;
 
 public class WorkoutModel implements Serializable {
-    private int workoutsId, workout_exerciseId, exercisesId;
-    private String workoutName, exerciseName, exerciseType, exerciseDescription, exerciseAccessory;
+    private int userId, workoutId, exercisesId;
+    private String firstName, lastName, email, password, workoutName, exerciseName, exerciseType, exerciseDescription, exerciseAccessory;
 
-    public int getWorkoutsId() {
-        return workoutsId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setWorkoutsId(int workoutsId) {
-        this.workoutsId = workoutsId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getWorkout_exerciseId() {
-        return workout_exerciseId;
+    public int getWorkoutId() {
+        return workoutId;
     }
 
-    public void setWorkout_exerciseId(int workout_exerciseId) {
-        this.workout_exerciseId = workout_exerciseId;
+    public void setWorkoutId(int workoutId) {
+        this.workoutId = workoutId;
     }
 
     public int getExercisesId() {
@@ -28,6 +28,38 @@ public class WorkoutModel implements Serializable {
 
     public void setExercisesId(int exercisesId) {
         this.exercisesId = exercisesId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getWorkoutName() {
@@ -68,5 +100,23 @@ public class WorkoutModel implements Serializable {
 
     public void setExerciseAccessory(String exerciseAccessory) {
         this.exerciseAccessory = exerciseAccessory;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkoutModel{" +
+                "userId=" + userId +
+                ", workoutId=" + workoutId +
+                ", exercisesId=" + exercisesId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", workoutName='" + workoutName + '\'' +
+                ", exerciseName='" + exerciseName + '\'' +
+                ", exerciseType='" + exerciseType + '\'' +
+                ", exerciseDescription='" + exerciseDescription + '\'' +
+                ", exerciseAccessory='" + exerciseAccessory + '\'' +
+                '}';
     }
 }
