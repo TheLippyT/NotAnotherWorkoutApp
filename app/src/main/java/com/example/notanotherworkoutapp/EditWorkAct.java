@@ -73,6 +73,7 @@ public class EditWorkAct extends AppCompatActivity {
             public void onClick(View v) {
                 sumworkout+=1;
                 workvalue.setText(sumworkout+"");
+                //myDb.addWorkout();
             }
         });
 
@@ -84,6 +85,7 @@ public class EditWorkAct extends AppCompatActivity {
                 } else {
                     sumworkout-=1;
                     workvalue.setText(sumworkout+"");
+                    //myDb.delete();
                 }
             }
         });
@@ -100,4 +102,38 @@ public class EditWorkAct extends AppCompatActivity {
         bgprogress.startAnimation(bttfive);
 
     }
+
+    public void addWorkout(){
+        btnadd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //myDb.addExerciseToWorkout();
+                    }
+                }
+        );
+    }
+
+    public  void deleteWorkout(){
+        btnremove.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //myDb.delete();
+                    }
+                }
+        );
+    }
+
+    public void updateData(){
+        btnadd.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        //myDb.updateExercise();
+                    }
+                }
+        );
+    }
+
 }
