@@ -95,6 +95,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+
     public void updateUser(int id, String fName,  String lName, String email, String password ) {
         SQLiteDatabase db = this.getWritableDatabase();
 
