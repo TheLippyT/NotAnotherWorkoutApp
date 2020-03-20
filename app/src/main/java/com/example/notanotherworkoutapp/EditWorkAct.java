@@ -36,6 +36,17 @@ public class EditWorkAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_work);
         myDb = new DataBaseHelper(this);
+        
+        TopFragment topFragment = TopFragment.newInstance(WorkoutAct.EditWorkAct);
+        topFragment.setListener(this);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        //transaction.add(R.id.topFragment.newINstance(WorkoutAct.HOME_SCREEN)};
+        transaction.add(R.id.topFragment, topFragment);
+
+        transaction.commit();
+
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);
