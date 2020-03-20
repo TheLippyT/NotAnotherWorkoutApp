@@ -95,6 +95,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_USERS, null, valuesPassword);
     }
 
+
+
+
     public List<UserModel> getAllUser() {
         // array of columns to fetch
         String[] columns = {
@@ -145,6 +148,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // return user list
         return userList;
     }
+
+
 
 
 
@@ -413,5 +418,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return false;
     }
+
 
 }
