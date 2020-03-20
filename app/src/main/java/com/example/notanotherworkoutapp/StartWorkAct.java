@@ -57,6 +57,16 @@ public class StartWorkAct extends AppCompatActivity {
             }
         };
         registerReceiver(broadcastReceiver, intentFilter);
+        
+        TopFragment topFragment = TopFragment.newInstance(WorkoutAct.StartWorkAct);
+        topFragment.setListener(this);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        //transaction.add(R.id.topFragment.newINstance(WorkoutAct.HOME_SCREEN)};
+        transaction.add(R.id.topFragment, topFragment);
+
+        transaction.commit();
 
 
         // load animations
