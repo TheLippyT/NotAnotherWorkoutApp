@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.notanotherworkoutapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"></uses-permission>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,19 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WorkoutAct"></activity>
-        <activity android:name=".EditWorkAct"></activity>
-        <activity android:name=".StartWorkAct"></activity>
-        <service android:name=".TimerService"></service>
+
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".WorkoutAct" />
+        <activity android:name=".EditWorkAct" />
+        <activity android:name=".StartWorkAct" />
+
+        <service android:name=".TimerService" />
     </application>
 
 </manifest>

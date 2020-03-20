@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,12 +21,10 @@ public class WorkoutAct extends AppCompatActivity {
     TextView titlepage, subtitlepage, intropage, subintropage,
             btnexercise, fitonetitle, fitonedesc, fittwotitle, fittwodesc,
             fitthreetitle, fitthreedesc, fitfourtitle, fitfourdesc;
-
     Animation bttone, bttwo, bttfour, bttfive, bttsix, bttseven, btteight;
-
     View divpage, bgprogress;
-
     LinearLayout fitone, fittwo, fitthree, fitfour;
+    Button addWorkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,16 @@ public class WorkoutAct extends AppCompatActivity {
                 startActivity(a);
             }
         });
+        // goto editworkoutactivity
+        addWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WorkoutAct.this, EditWorkAct.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
 
         // item fit layout
         fitone = (LinearLayout) findViewById(R.id.fitone);
@@ -77,7 +86,6 @@ public class WorkoutAct extends AppCompatActivity {
         fitonetitle = (TextView) findViewById(R.id.fitonetitle);
         fitonedesc = (TextView) findViewById(R.id.fitonedesc);
 
-        fittwotitle = (TextView) findViewById(R.id.fittwotitle);
         fittwodesc = (TextView) findViewById(R.id.fittwodesc);
 
         fitthreetitle = (TextView) findViewById(R.id.fitthreetitle);
