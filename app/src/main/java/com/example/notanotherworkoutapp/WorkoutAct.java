@@ -19,6 +19,12 @@ import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
 public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonListener {
     DataBaseHelper myDb;
+    
+    //FRAGM
+    public static final int HOME_SCREEN = 0;
+    public static final int StartWorkAct = 1;
+    public static final int EditWorkAct = 2;
+
 
     TextView titlepage, subtitlepage, intropage, subintropage,
             btnexercise, fitonetitle, fitonedesc, fittwotitle, fittwodesc,
