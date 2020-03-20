@@ -12,10 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
-public class WorkoutAct extends AppCompatActivity {
+public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonListener {
     DataBaseHelper myDb;
 
     TextView titlepage, subtitlepage, intropage, subintropage,
