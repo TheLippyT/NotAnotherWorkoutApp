@@ -21,8 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import static android.Manifest.permission.FOREGROUND_SERVICE;
 
-public class StartWorkAct extends AppCompatActivity {
-
+public class StartWorkAct extends WorkoutAct implements TopFragment.ButtonListener {
 
     TextView intropage, subintropage, fitonetitle, fitonedesc, btnexercise;
     View divpage, bgprogress;
