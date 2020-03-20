@@ -33,6 +33,17 @@ public class WorkoutAct extends AppCompatActivity {
         myDb = new DataBaseHelper(this);
 
         myDb.getAllWorkouts();
+        
+        //fragment
+        TopFragment topFragment = TopFragment.newInstance(WorkoutAct.HOME_SCREEN);
+        topFragment.setListener(this);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        //transaction.add(R.id.topFragment.newINstance(WorkoutAct.HOME_SCREEN)};
+        transaction.add(R.id.topFragment, topFragment);
+
+        transaction.commit();
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);
