@@ -5,14 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 
+import com.example.notanotherworkoutapp.entity.ExerciseModel;
+import com.example.notanotherworkoutapp.entity.UserModel;
 import com.example.notanotherworkoutapp.entity.WorkoutModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -94,6 +95,57 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_USERS, null, valuesPassword);
     }
 
+    public List<UserModel> getAllUser() {
+        // array of columns to fetch
+        String[] columns = {
+                COL_U1,
+                COL_U2,
+                COL_U3,
+                COL_U4,
+                COL_U5
+        };
+        // sorting orders
+        String sortOrder =
+                COL_U2 + " ASC";
+        List<UserModel> userList = new ArrayList<UserModel>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // query the user table
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
+         */
+        Cursor cursor = db.query(TABLE_USERS, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                UserModel user = new UserModel();
+                user.setUserId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_U1))));
+                user.setFirstName(cursor.getString(cursor.getColumnIndex(COL_U2)));
+                user.setLastName(cursor.getString(cursor.getColumnIndex(COL_U3)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(COL_U4)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(COL_U5)));
+                // Adding user record to list
+                userList.add(user);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return userList;
+    }
+
 
     public void updateUser(int id, String fName,  String lName, String email, String password ) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -157,6 +209,57 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_WORKOUT, null, valuesExerciseId);
     }
 
+    public List<ExerciseModel> getAllExercises() {
+        // array of columns to fetch
+        String[] columns = {
+                COL_E1,
+                COL_E2,
+                COL_E3,
+                COL_E4,
+                COL_E5
+        };
+        // sorting orders
+        String sortOrder =
+                COL_E2 + " ASC";
+        List<ExerciseModel> exerciseModelList = new ArrayList<ExerciseModel>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // query the user table
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
+         */
+        Cursor cursor = db.query(TABLE_EXERCISE, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                ExerciseModel exercise = new ExerciseModel();
+                exercise.setExerciseId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_E1))));
+                exercise.setExerciseName(cursor.getString(cursor.getColumnIndex(COL_E2)));
+                exercise.setExerciseType(cursor.getString(cursor.getColumnIndex(COL_E3)));
+                exercise.setExerciseDescription(cursor.getString(cursor.getColumnIndex(COL_E4)));
+                exercise.setExerciseAccessory(cursor.getString(cursor.getColumnIndex(COL_E5)));
+                // Adding user record to list
+                exerciseModelList.add(exercise);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return exerciseModelList;
+    }
+
     public void updateWorkout(int id, String name, String userId, String exerciseId ) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -177,5 +280,137 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<WorkoutModel> getAllWorkouts() {
+        // array of columns to fetch
+        String[] columns = {
+                COL_W1,
+                COL_W2,
+                COL_W3,
+                COL_W4
+        };
+        // sorting orders
+        String sortOrder =
+                COL_W2 + " ASC";
+        List<WorkoutModel> workoutModelList = new ArrayList<WorkoutModel>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // query the user table
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
+         */
+        Cursor cursor = db.query(TABLE_WORKOUT, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                sortOrder); //The sort order
+
+
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                WorkoutModel workout = new WorkoutModel();
+                workout.setWorkoutId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_W1))));
+                workout.setWorkoutName(cursor.getString(cursor.getColumnIndex(COL_W2)));
+                workout.setUserId(cursor.getInt(cursor.getColumnIndex(COL_W3)));
+                workout.setExerciseId(cursor.getInt(cursor.getColumnIndex(COL_W4)));
+                // Adding user record to list
+                workoutModelList.add(workout);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return workoutModelList;
+    }
+
+
+    public boolean checkUser(String email) {
+
+        // array of columns to fetch
+        String[] columns = {
+                COL_U1
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COL_U4 + " = ?";
+
+        // selection argument
+        String[] selectionArgs = {email};
+
+        // query user table with condition
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
+         */
+        Cursor cursor = db.query(TABLE_USERS, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                      //filter by row groups
+                null);                      //The sort order
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * This method to check user exist or not
+     *
+     * @param email
+     * @param password
+     * @return true/false
+     */
+    public boolean checkUser(String email, String password) {
+
+        // array of columns to fetch
+        String[] columns = {
+                COL_U1
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = COL_U4 + " = ?" + " AND " + COL_U5 + " = ?";
+
+        // selection arguments
+        String[] selectionArgs = {email, password};
+
+        // query user table with conditions
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com' AND user_password = 'qwerty';
+         */
+        Cursor cursor = db.query(TABLE_USERS, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+        int cursorCount = cursor.getCount();
+
+        cursor.close();
+        db.close();
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
 
 }
