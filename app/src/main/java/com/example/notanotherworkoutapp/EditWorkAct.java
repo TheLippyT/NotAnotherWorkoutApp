@@ -13,9 +13,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
-public class EditWorkAct extends AppCompatActivity {
+public class EditWorkAct extends WorkoutAct {
 
     DataBaseHelper myDb;
 
