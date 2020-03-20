@@ -124,4 +124,20 @@ public class WorkoutAct extends AppCompatActivity {
         bgprogress.startAnimation(bttseven);
 
     }
+       @Override
+    public void didButtonPressed(int buttonID) {
+        switch (buttonID) {
+            case R.id.backBtnFragm:
+                Log.e("EditWorkAct", "backBtnFregm Pressed");
+                Intent intent = new Intent(this,WorkoutAct.class);
+                startActivity(intent);
+                Log.e("StartWorkAct", "backBtnFregm Pressed");
+                intent = new Intent(this, WorkoutAct.class);
+                startActivity(intent);
+                Log.e("WorkoutAct", "backBtnFregm Pressed");
+                intent = new Intent(this, WorkoutAct.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
