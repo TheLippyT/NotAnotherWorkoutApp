@@ -4,44 +4,41 @@ import android.content.Intent;
 import android.graphics.Typeface;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
 public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonListener {
-    DataBaseHelper myDb;
-    
+    //DataBaseHelper myDb;
+
     //FRAGM
     public static final int HOME_SCREEN = 0;
     public static final int StartWorkAct = 1;
     public static final int EditWorkAct = 2;
 
-
     TextView titlepage, subtitlepage, intropage, subintropage,
             btnexercise, fitonetitle, fitonedesc, fittwotitle, fittwodesc,
             fitthreetitle, fitthreedesc, fitfourtitle, fitfourdesc;
+
     Animation bttone, bttwo, bttfour, bttfive, bttsix, bttseven, btteight;
+
     View divpage, bgprogress;
+
     LinearLayout fitone, fittwo, fitthree, fitfour;
-    Button addWorkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        myDb = new DataBaseHelper(this);
 
-        myDb.getAllWorkouts();
-        
         //fragment
         TopFragment topFragment = TopFragment.newInstance(WorkoutAct.HOME_SCREEN);
         topFragment.setListener(this);
@@ -52,6 +49,13 @@ public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonL
         transaction.add(R.id.topFragment, topFragment);
 
         transaction.commit();
+
+
+
+        //DB
+        //myDb = new DataBaseHelper(this);
+
+        //myDb.getAllWorkouts();
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);
@@ -81,17 +85,8 @@ public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonL
                 startActivity(a);
             }
         });
-        // goto editworkoutactivity
-        addWorkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WorkoutAct.this, EditWorkAct.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
 
-
+        // item fit layout
         // item fit layout
         fitone = (LinearLayout) findViewById(R.id.fitone);
         fittwo = (LinearLayout) findViewById(R.id.fittwo);
@@ -101,10 +96,12 @@ public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonL
 
 
 
+
         // item fit
         fitonetitle = (TextView) findViewById(R.id.fitonetitle);
         fitonedesc = (TextView) findViewById(R.id.fitonedesc);
 
+        fittwotitle = (TextView) findViewById(R.id.fittwotitle);
         fittwodesc = (TextView) findViewById(R.id.fittwodesc);
 
         fitthreetitle = (TextView) findViewById(R.id.fitthreetitle);
@@ -132,7 +129,9 @@ public class WorkoutAct extends AppCompatActivity implements TopFragment.ButtonL
         bgprogress.startAnimation(bttseven);
 
     }
-       @Override
+
+
+    @Override
     public void didButtonPressed(int buttonID) {
         switch (buttonID) {
             case R.id.backBtnFragm:

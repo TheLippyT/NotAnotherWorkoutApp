@@ -2,85 +2,87 @@ package com.example.notanotherworkoutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
-import com.example.notanotherworkoutapp.entity.UserModel;
 
-public class LoginActivity extends AppCompatActivity {
-
-    EditText username, password;
-    Button register, loginButton;
-    DataBaseHelper dataBaseHelper;
+public class LoginActivity extends MainActivity {
+    EditText mTextUsername;
+    EditText mTextPassword;
+    Button mButtonLogin;
+    TextView mTextViewRegister;
+    DataBaseHelper db;
+    ViewGroup progressView;
+    protected boolean isProgressShowing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = (EditText) findViewById(R.id.edittext_username);
-        password = (EditText) findViewById(R.id.edittext_password);
-        //register = (Button) findViewById(R.id.textview_register);
-        loginButton = (Button) findViewById(R.id.button_login);
+        Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
+        View v = this.getLayoutInflater().inflate(R.layout.progress_bar,null);
+        dialog.setContentView(v);
+        dialog.show();
 
-        register.setOnClickListener(new View.OnClickListener() {
+        db = new DataBaseHelper(this);
+        mTextUsername = (EditText)findViewById(R.id.edittext_username);
+        mTextPassword = (EditText)findViewById(R.id.edittext_password);
+        mButtonLogin = (Button)findViewById(R.id.button_login);
+        mTextViewRegister = (TextView)findViewById(R.id.textview_register);
+        mTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginUser(username.getText().toString(), password.getText().toString());
-
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(registerIntent);
             }
         });
 
-
-
-
-    }
-    private void loginUser(String username, String password){
-        validateUsername();
-        validatePassword();
-
-
-
-        if (validateUsername() && validatePassword()){
-
-            UserModel userExists = DataBaseHelper.(username,password);
-            if (userExists != null){
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            }else{
-                System.out.println("wrong username/password");
+        mButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user = mTextUsername.getText().toString().trim();
+                String pwd = mTextPassword.getText().toString().trim();
+                Boolean res = db.checkUser(user, pwd);
+                if(res == true)
+                {
+                    Intent HomePage = new Intent(LoginActivity.this,WorkoutAct.class);
+                    startActivity(HomePage);
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"Login Error",Toast.LENGTH_SHORT).show();
+                }
             }
-        }
+        });
     }
-    private Boolean validateUsername(){
-        String value = username.getText().toString().trim();
 
+    public void showProgressingView() {
 
-        if (value.isEmpty()){
-            return false;
-        }else{
-            return true;
-        }
-    }
-    private Boolean validatePassword(){
-        String value = password.getText().toString().trim();
-
-
-        if (value.isEmpty()){
-            return false;
-        }else{
-            return true;
+        if (!isProgressShowing) {
+            View view=findViewById(R.id.progressBar1);
+            view.bringToFront();
         }
     }
 
+    public void hideProgressingView() {
+        View v = this.findViewById(android.R.id.content).getRootView();
+        ViewGroup viewGroup = (ViewGroup) v;
+        viewGroup.removeView(progressView);
+        isProgressShowing = false;
+    }
 }
+
+

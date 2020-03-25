@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    
-        <FrameLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:id="@+id/topFragment"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/titlepage"
@@ -223,16 +222,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bgprogress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

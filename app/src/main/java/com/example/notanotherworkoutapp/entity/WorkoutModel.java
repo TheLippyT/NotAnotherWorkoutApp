@@ -1,31 +1,33 @@
 package com.example.notanotherworkoutapp.entity;
 
-public class WorkoutModel {
-    private int workoutId, userId, exerciseId;
-    private String workoutName;
+import java.io.Serializable;
 
-    public int getWorkoutId() {
-        return workoutId;
+public class WorkoutModel implements Serializable {
+    private int workoutsId, workout_exerciseId, exercisesId;
+    private String workoutName, exerciseName, exerciseType, exerciseDescription, exerciseAccessory;
+
+    public int getWorkoutsId() {
+        return workoutsId;
     }
 
-    public void setWorkoutId(int workoutId) {
-        this.workoutId = workoutId;
+    public void setWorkoutsId(int workoutsId) {
+        this.workoutsId = workoutsId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getWorkout_exerciseId() {
+        return workout_exerciseId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setWorkout_exerciseId(int workout_exerciseId) {
+        this.workout_exerciseId = workout_exerciseId;
     }
 
-    public int getExerciseId() {
-        return exerciseId;
+    public int getExercisesId() {
+        return exercisesId;
     }
 
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
+    public void setExercisesId(int exercisesId) {
+        this.exercisesId = exercisesId;
     }
 
     public String getWorkoutName() {
@@ -36,13 +38,35 @@ public class WorkoutModel {
         this.workoutName = workoutName;
     }
 
-    @Override
-    public String toString() {
-        return "WorkoutModel{" +
-                "workoutId=" + workoutId +
-                ", userId=" + userId +
-                ", exerciseId=" + exerciseId +
-                ", workoutName='" + workoutName + '\'' +
-                '}';
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
+
+    public String getExerciseType() {
+        return exerciseType;
+    }
+
+    public void setExerciseType(String exerciseType) {
+        this.exerciseType = exerciseType;
+    }
+
+    public String getExerciseDescription() {
+        return exerciseDescription;
+    }
+
+    public void setExerciseDescription(String exerciseDescription) {
+        this.exerciseDescription = exerciseDescription;
+    }
+
+    public String getExerciseAccessory() {
+        return exerciseAccessory;
+    }
+
+    public void setExerciseAccessory(String exerciseAccessory) {
+        this.exerciseAccessory = exerciseAccessory;
     }
 }

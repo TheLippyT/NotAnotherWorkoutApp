@@ -13,12 +13,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
 public class EditWorkAct extends WorkoutAct {
 
-    DataBaseHelper myDb;
+    /*public static final int HOME_SCREEN = 0;
+    public static final int START_WORKOUT = 1;
+    public static final int CREATE_WORKOUT = 2;*/
+
+    //DataBaseHelper myDb;
 
     TextView titlepage, subtitlepage, fitonetitle, fitonedesc,
             workvalue, fittwotitle, fittwodesc, btnexercise;
@@ -33,12 +36,14 @@ public class EditWorkAct extends WorkoutAct {
 
     int sumworkout = 0;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_work);
-        myDb = new DataBaseHelper(this);
-        
+        //myDb = new DataBaseHelper(this);
+
         TopFragment topFragment = TopFragment.newInstance(WorkoutAct.EditWorkAct);
         topFragment.setListener(this);
 
@@ -48,7 +53,6 @@ public class EditWorkAct extends WorkoutAct {
         transaction.add(R.id.topFragment, topFragment);
 
         transaction.commit();
-
 
         // load animations
         bttone = AnimationUtils.loadAnimation(this, R.anim.bttone);
@@ -81,12 +85,11 @@ public class EditWorkAct extends WorkoutAct {
        // myDb.addWorkout();
        // myDb.addExercise();
         //myDb.addExerciseToWorkout();
-        btnadd.setOnClickListener(new View.OnClickListener() {
+        /*btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sumworkout+=1;
                 workvalue.setText(sumworkout+"");
-                //myDb.addWorkout();
             }
         });
 
@@ -98,10 +101,9 @@ public class EditWorkAct extends WorkoutAct {
                 } else {
                     sumworkout-=1;
                     workvalue.setText(sumworkout+"");
-                    //myDb.delete();
                 }
             }
-        });
+        });*/
 
         // assign the animations
         titlepage.startAnimation(bttone);
@@ -115,38 +117,4 @@ public class EditWorkAct extends WorkoutAct {
         bgprogress.startAnimation(bttfive);
 
     }
-
-    public void addWorkout(){
-        btnadd.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //myDb.addExerciseToWorkout();
-                    }
-                }
-        );
-    }
-
-    public  void deleteWorkout(){
-        btnremove.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //myDb.delete();
-                    }
-                }
-        );
-    }
-
-    public void updateData(){
-        btnadd.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v){
-                        //myDb.updateExercise();
-                    }
-                }
-        );
-    }
-
 }

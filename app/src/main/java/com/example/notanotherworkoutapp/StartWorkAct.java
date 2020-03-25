@@ -25,16 +25,11 @@ public class StartWorkAct extends WorkoutAct implements TopFragment.ButtonListen
 
     TextView intropage, subintropage, fitonetitle, fitonedesc, btnexercise;
     View divpage, bgprogress;
-//    ImageView imgtimer;
+    //    ImageView imgtimer;
     LinearLayout fitone;
     private TextView showTime;
     private EditText enterTime;
     private Button start;
-
-//    private static final long START_TIME_IN_MILLIS = 800000;
-//    private CountDownTimer countDownTimer;
-//    private boolean mTimerRunning;
-//    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     Animation btthree, bttfour, ttbone, ttbtwo, alphagogo;
 
@@ -57,7 +52,7 @@ public class StartWorkAct extends WorkoutAct implements TopFragment.ButtonListen
             }
         };
         registerReceiver(broadcastReceiver, intentFilter);
-        
+
         TopFragment topFragment = TopFragment.newInstance(WorkoutAct.StartWorkAct);
         topFragment.setListener(this);
 
@@ -123,30 +118,5 @@ public class StartWorkAct extends WorkoutAct implements TopFragment.ButtonListen
         startService(intentService);
     }
 
-
-
-//    private void startTimer(){
-//        countDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                mTimeLeftInMillis = millisUntilFinished;
-//                updateCountDowntText();
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
-//            }
-//        }.start();
-//        mTimerRunning = true;
-//    }
-//
-//    private void updateCountDowntText(){
-//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-//        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-//
-//        String timeLeft = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-//        timerValue.setText(timeLeft);
-//    }
 
 }
