@@ -55,9 +55,10 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top, container, false);
 
-        TextView homeTxtFragm = view.findViewById(R.id.homeTxtFagm);
+        //TextView homeTxtFragm = view.findViewById(R.id.homeTxtFagm);
 
         Button backBtnFragm = view.findViewById(R.id.backBtnFragm);
+        Button DarkModeBtn = view.findViewById(R.id.DarkModeBtn);
 
         int screenType = getArguments().getInt("screenType", -1);
         if(screenType == WorkoutAct.HOME_SCREEN){

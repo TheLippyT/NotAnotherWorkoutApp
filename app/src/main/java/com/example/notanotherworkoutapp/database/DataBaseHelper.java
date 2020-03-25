@@ -60,9 +60,4 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else
             return  false;
     }
-
-    public Integer deleteData (String id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"username = ?",new String[]{id});
-    }
 }
