@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgpage;
     Animation animimgpage, bttone, bttwo, btthree, ltr;
     View bgprogress, bgprogresstop;
-    Button inspire;
+    Button inspire, deleteUser;
+    private EditText User;
 
 
     @Override
@@ -57,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         quotetext = (TextView) findViewById(R.id.subtitlepage);
         //inspire button
         inspire = (Button) findViewById(R.id.inspire);
+        deleteUser = (Button) findViewById(R.id.deleteUser);
+
+
+
         //display Rest data into the TextView
         inspire.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         imgpage = (ImageView) findViewById(R.id.imgpage);
         bgprogress = (View) findViewById(R.id.bgprogress);
         bgprogresstop = (View) findViewById(R.id.bgprogresstop);
-
+        User = (EditText) findViewById(R.id.User);
        
 
         // export animate
@@ -97,6 +104,22 @@ public class MainActivity extends AppCompatActivity {
     }
     });
 
+    }
+
+    public void DeleteData(){
+        deleteUser.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Integer deleteRows = myDb.deleteData(User.getText().toString());
+                        if(deleteRows>0)
+                            Toast.makeText(MainActivity.this,"User removed", Toast.LENGTH_LONG).show();
+                         else
+                             Toast.makeText(MainActivity.this,"User not removed",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+        );
     }
 
 

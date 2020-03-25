@@ -1,33 +1,38 @@
-    package="com.example.notanotherworkoutapp">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <manifest package="com.example.notanotherworkoutapp" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <service android:name=".TimerService" />
-
-        <activity android:name=".StartWorkAct"/>
-        <activity android:name=".EditWorkAct" />
-        <activity android:name=".WorkoutAct"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MainActivity">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 
+    -<application android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:allowBackup="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <service android:name=".TimerService"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    <activity android:name=".StartWorkAct"/>
 
-    </application>
+    <activity android:name=".EditWorkAct"/>
+
+    <activity android:name=".WorkoutAct"/>
+
+    <activity android:name=".RegisterActivity"/>
+
+    <activity android:name=".LoginActivity"/>
+
+
+    -<activity android:name=".MainActivity">
+
+
+    -<intent-filter>
+
+    <action android:name="android.intent.action.MAIN"/>
+
+    <category android:name="android.intent.category.LAUNCHER"/>
+
+</intent-filter>
+
+</activity>
+
+</application>
 
 </manifest>
