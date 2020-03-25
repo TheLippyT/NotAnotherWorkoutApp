@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 fetchData fetchData = new fetchData();
                 fetchData.execute();
+                DeleteData();
 
             }
         });
