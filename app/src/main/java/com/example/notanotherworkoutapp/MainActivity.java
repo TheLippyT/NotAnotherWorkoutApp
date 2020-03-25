@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,14 +28,15 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    //DataBaseHelper myDb;
+    DataBaseHelper myDb;
 
     public static TextView quotetext;
     TextView titlepage, btnexercise;
     ImageView imgpage;
     Animation animimgpage, bttone, bttwo, btthree, ltr;
     View bgprogress, bgprogresstop;
-    Button inspire;
+    Button inspire, deleteUser;
+    private EditText User;
 
 
     @Override
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        //myDb = new DataBaseHelper(this);
+        myDb = new DataBaseHelper(this);
 
 
 
@@ -52,11 +55,15 @@ public class MainActivity extends AppCompatActivity {
         btthree = AnimationUtils.loadAnimation(this, R.anim.btthree);
         ltr = AnimationUtils.loadAnimation(this, R.anim.ltr);
 
-        
+
         titlepage = (TextView) findViewById(R.id.titlepage);
         quotetext = (TextView) findViewById(R.id.subtitlepage);
         //inspire button
         inspire = (Button) findViewById(R.id.inspire);
+        deleteUser = (Button) findViewById(R.id.deleteUser);
+
+
+
         //display Rest data into the TextView
         inspire.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         imgpage = (ImageView) findViewById(R.id.imgpage);
         bgprogress = (View) findViewById(R.id.bgprogress);
         bgprogresstop = (View) findViewById(R.id.bgprogresstop);
+        User = (EditText) findViewById(R.id.User);
 
-       
 
         // export animate
         imgpage.startAnimation(animimgpage);
@@ -84,14 +91,13 @@ public class MainActivity extends AppCompatActivity {
         bgprogress.startAnimation(bttwo);
         bgprogresstop.startAnimation(ltr);
 
-
     // give an event to another page
         btnexercise.setOnClickListener(new View.OnClickListener()
 
     {
         @Override
         public void onClick (View v){
-        Intent a = new Intent(MainActivity.this, LoginActivity.class);
+        Intent a = new Intent(MainActivity.this, WorkoutAct.class);
         a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(a);
 
@@ -99,6 +105,22 @@ public class MainActivity extends AppCompatActivity {
     }
     });
 
+    }
+
+    public void DeleteData(){
+        deleteUser.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Integer deleteRows = myDb.deleteData(User.getText().toString());
+                        if(deleteRows>0)
+                            Toast.makeText(MainActivity.this,"User removed", Toast.LENGTH_LONG).show();
+                         else
+                             Toast.makeText(MainActivity.this,"User not removed",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+        );
     }
 
 
