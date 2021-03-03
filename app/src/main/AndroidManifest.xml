@@ -12,14 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".TimerService" />
+        <service android:name=".services.TimerService" />
 
-        <activity android:name=".StartWorkAct"/>
-        <activity android:name=".EditWorkAct" />
-        <activity android:name=".WorkoutAct"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.StartWorkAct"/>
+        <activity android:name=".activity.EditWorkAct" />
+        <activity android:name=".activity.WorkoutAct"/>
+        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".app.MainActivity">
 
 
 

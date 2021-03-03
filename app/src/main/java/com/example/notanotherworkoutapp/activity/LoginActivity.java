@@ -1,21 +1,18 @@
-package com.example.notanotherworkoutapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.notanotherworkoutapp.activity;
 
 import android.os.Bundle;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.notanotherworkoutapp.R;
+import com.example.notanotherworkoutapp.app.MainActivity;
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
 public class LoginActivity extends MainActivity {
@@ -45,7 +42,7 @@ public class LoginActivity extends MainActivity {
         mTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
             }
         });
@@ -58,7 +55,7 @@ public class LoginActivity extends MainActivity {
                 Boolean res = db.checkUser(user, pwd);
                 if(res == true)
                 {
-                    Intent HomePage = new Intent(LoginActivity.this,WorkoutAct.class);
+                    Intent HomePage = new Intent(LoginActivity.this, WorkoutAct.class);
                     startActivity(HomePage);
                 }
                 else

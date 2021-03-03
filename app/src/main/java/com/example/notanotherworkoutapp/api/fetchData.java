@@ -1,6 +1,8 @@
-package com.example.notanotherworkoutapp;
+package com.example.notanotherworkoutapp.api;
 
 import android.os.AsyncTask;
+
+import com.example.notanotherworkoutapp.app.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

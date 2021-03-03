@@ -1,4 +1,4 @@
-package com.example.notanotherworkoutapp;
+package com.example.notanotherworkoutapp.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,19 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.notanotherworkoutapp.R;
+import com.example.notanotherworkoutapp.activity.WorkoutAct;
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.example.notanotherworkoutapp.api.fetchData;
 
 public class MainActivity extends AppCompatActivity {
     DataBaseHelper myDb;
