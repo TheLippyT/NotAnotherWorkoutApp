@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.notanotherworkoutapp.R;
+import com.example.notanotherworkoutapp.app.MainActivity;
 import com.example.notanotherworkoutapp.database.DataBaseHelper;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         mTextViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent LoginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent LoginIntent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(LoginIntent);
             }
         });
@@ -53,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                     long val = db.addUser(user,pwd);
                     if(val > 0){
                         Toast.makeText(RegisterActivity.this,"You have registered",Toast.LENGTH_SHORT).show();
-                        Intent moveToLogin = new Intent(RegisterActivity.this,LoginActivity.class);
+                        Intent moveToLogin = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(moveToLogin);
                     }
                     else{
