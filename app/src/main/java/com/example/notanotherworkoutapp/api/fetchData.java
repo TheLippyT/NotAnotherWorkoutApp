@@ -2,6 +2,7 @@ package com.example.notanotherworkoutapp.api;
 
 import android.os.AsyncTask;
 
+import com.example.notanotherworkoutapp.activity.LoginActivity;
 import com.example.notanotherworkoutapp.app.MainActivity;
 
 import org.json.JSONArray;
@@ -54,7 +55,7 @@ public class fetchData extends AsyncTask<Void,Void,Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         //display the parsed data in the TextView
-        MainActivity.quotetext.setText(this.quoteParsed);
+        LoginActivity.quotetext.setText(this.quoteParsed);
 
     }
 }
