@@ -1,0 +1,2 @@
+> make update for the app. a change username/password can be implemented
+> make changes to the UI. integrate the buttons a little better.
